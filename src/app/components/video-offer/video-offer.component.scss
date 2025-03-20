@@ -45,7 +45,7 @@ main {
   }
 
   > h1 {
-    font-size: 88px;
+    font-size: 68px;
     font-weight: 700;
   }
   > p {
@@ -119,6 +119,8 @@ main {
       display: flex;
       gap: 1rem;
       > li {
+        margin-left: unset;
+        margin-right: unset;
         > .video-and-duration {
           position: relative;
           > img {
@@ -221,7 +223,7 @@ footer {
   }
   .current-video-description {
     > h1 {
-      font-size: 60px;
+      font-size: 45px;
     }
   }
 }

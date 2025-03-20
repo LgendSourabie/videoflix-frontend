@@ -20,6 +20,7 @@
       </article>
     </div>
     <div class="category-list">
+      <!-- <app-video-category *ngIf="recentVideos.length !== 0" [videos]="recentVideos" categoryTitle="Continue" /> -->
       <app-video-category *ngIf="recentVideos.length !== 0" [videos]="recentVideos" categoryTitle="New on Videoflix" />
       <app-video-category *ngIf="categorizedVideos.documentary.length !== 0" [videos]="categorizedVideos.documentary" categoryTitle="Documentary" />
       <app-video-category *ngIf="categorizedVideos.technic.length !== 0" [videos]="categorizedVideos.technic" categoryTitle="Technic" />

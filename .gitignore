@@ -6,6 +6,10 @@
 /out-tsc
 /bazel-out
 
+# Extra data
+/src/assets/videos/
+/src/assets/video_img/
+
 # Node
 /node_modules
 npm-debug.log

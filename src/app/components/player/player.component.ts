@@ -47,7 +47,7 @@ export class PlayerComponent {
     this.player = new Plyr(this.videoElement.nativeElement, {
       captions: { active: true },
       quality: {
-        default: 720,
+        default: 480,
         options: [1080, 720, 480, 360, 240],
       },
     });
@@ -78,10 +78,6 @@ export class PlayerComponent {
       localStorage.removeItem(this.storageKey);
     });
   }
-
-  //   this.player.on('timeupdate', () => {
-  //     localStorage.setItem('video-progress', this.player.currentTime);
-  // });
 
   updateRecentVideo(id: number) {
     this.token = sessionStorage.getItem("token");

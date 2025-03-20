@@ -34,7 +34,6 @@ export class VideoOfferComponent implements AfterViewInit, OnInit {
   ngOnInit(): void {
     this.requestsService.videos$.subscribe(videos => {
       this.allVideos = videos;
-      console.log("All videos", this.allVideos);
       this.selectRandomVideo();
     });
 
@@ -54,7 +53,6 @@ export class VideoOfferComponent implements AfterViewInit, OnInit {
 
     this.requestsService.categorizedVideos$.subscribe(video => {
       this.categorizedVideos = video;
-      console.log("categorized Offer video:", this.categorizedVideos);
     });
   }
 

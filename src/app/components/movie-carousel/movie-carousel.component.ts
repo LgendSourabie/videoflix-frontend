@@ -36,7 +36,8 @@ export class MovieCarouselComponent implements OnInit {
       breakpoints: {
         1315: { perView: 3 },
         768: { perView: 3 },
-        480: { perView: 1.5 },
+        550: { perView: 2 },
+        350: { perView: 1.75 },
       },
     }).mount();
   }

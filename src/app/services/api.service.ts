@@ -1,12 +1,12 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { inject, Injectable } from "@angular/core";
+import { Observable } from "rxjs";
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root",
 })
 export class ApiService {
-  private URL = 'http://127.0.0.1:8000/';
+  private URL = "https://videoflix.ibrahima-sourabie-server.com/";
   private httpClient = inject(HttpClient);
 
   constructor() {}
@@ -14,30 +14,26 @@ export class ApiService {
   getAuthHeaders(token: string): HttpHeaders {
     const header = new HttpHeaders({
       Authorization: `Token ` + token,
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     });
     return header;
   }
 
   getUnAuthHeaders(): HttpHeaders {
     const header = new HttpHeaders({
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     });
     return header;
   }
 
   getData(endpoint: string, token: string): Observable<any> {
     return this.httpClient.get(this.URL + endpoint, {
-      observe: 'response',
+      observe: "response",
       headers: this.getAuthHeaders(token),
     });
   }
 
-  postData(
-    endpoint: string,
-    payload: any,
-    header: HttpHeaders
-  ): Observable<any> {
+  postData(endpoint: string, payload: any, header: HttpHeaders): Observable<any> {
     return this.httpClient.post(this.URL + endpoint, JSON.stringify(payload), {
       headers: header,
     });
@@ -68,7 +64,7 @@ export class ApiService {
   }
 
   isAuthenticated(): boolean {
-    const token = sessionStorage.getItem('token');
+    const token = sessionStorage.getItem("token");
     return !!token;
   }
 }

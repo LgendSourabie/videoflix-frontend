@@ -1,3 +1,4 @@
+@import "../../../styles.scss";
 .video-container {
   height: 100vh !important;
   display: flex;
@@ -7,8 +8,8 @@
 
   > .video-title {
     width: 100%;
-    padding-inline: 3rem;
-    position: absolute;
+    padding-inline: $paddingInline;
+    // position: absolute;
     z-index: 9999;
     top: 5rem;
     background: transparent;
@@ -30,4 +31,19 @@
 
 video {
   height: calc(100vh - 6rem) !important;
+}
+
+@media screen and (width<615px) {
+  .video-container {
+    > .video-title {
+      padding-inline: $paddingInlineMobile !important;
+      > span {
+        font-size: 24px;
+      }
+      > img {
+        width: 40px;
+        height: 40px;
+      }
+    }
+  }
 }
