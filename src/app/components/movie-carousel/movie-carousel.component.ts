@@ -50,7 +50,6 @@ export class MovieCarouselComponent implements OnInit {
 
       if (slide) {
         const videoId = slide.getAttribute("data-video-id");
-        console.log("Clicked Video ID:", videoId);
         this.updateRecentVideo(Number(videoId));
       }
     }

@@ -42,19 +42,12 @@ export class SignUpComponent implements OnInit {
     });
   }
 
-  /**
-   * success message when form submitted
-   */
-  successToast() {
-    this.toastr.success("You signed up successfully, Please check your email to activate your account!");
-  }
-
-  /**
-   * error message when form not submitted
-   */
-  errorToast() {
-    this.toastr.error("Op an error occurs, Try again!");
-  }
+  // /**
+  //  * error message when form not submitted
+  //  */
+  // errorToast() {
+  //   this.toastr.error("Op an error occurs, Try again!");
+  // }
 
   /**
    * this function allow the user to toggle password view
@@ -100,7 +93,7 @@ export class SignUpComponent implements OnInit {
         this.apiService.getUnAuthHeaders(),
         () => {
           this.requestsService.goToPage("/login");
-          this.successToast();
+          this.moduleService.successToast("You signed up successfully, Please check your email to activate your account!");
         }
       )
       .then(() => {

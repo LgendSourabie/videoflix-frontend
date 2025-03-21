@@ -122,10 +122,10 @@ export class RequestsService {
             this.getData("api/videos/recent_videos/", response.token, data => this.emitRecentVideos(data));
             sessionStorage.setItem("token", response.token);
           }
-          callback();
         }
       },
       complete: () => {
+        callback();
         this.resetLoading(2500);
       },
       error: error => {

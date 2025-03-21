@@ -37,16 +37,16 @@ export class VideoPlayerComponent implements AfterViewInit, OnInit {
     this.requestsService.recentVideos$.subscribe(videos => {
       this.recentVideos = videos;
     });
-
-    this.requestsService.currentVideos$.subscribe(video => {
-      this.currentVideo = video;
-      console.log("Current video:", this.currentVideo);
-    });
   }
 
   private player!: Plyr;
 
   ngAfterViewInit() {
+    this.requestsService.currentVideos$.subscribe(video => {
+      this.currentVideo = video;
+      console.log("Current video:", this.currentVideo);
+    });
+
     this.player = new Plyr(this.videoElement.nativeElement, {
       captions: { active: true },
       quality: {

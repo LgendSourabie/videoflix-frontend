@@ -1,18 +1,19 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { ApiService } from '../../services/api.service';
-import { RequestsService } from '../../services/requests.service';
-import { FooterComponent } from '../../shared/footer/footer.component';
-import { NavBarComponent } from '../../shared/nav-bar/nav-bar.component';
-import { WrapperComponent } from '../../shared/wrapper/wrapper.component';
-import { CommonModule } from '@angular/common';
+import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
+import { ApiService } from "../../services/api.service";
+import { RequestsService } from "../../services/requests.service";
+import { FooterComponent } from "../../shared/footer/footer.component";
+import { NavBarComponent } from "../../shared/nav-bar/nav-bar.component";
+import { WrapperComponent } from "../../shared/wrapper/wrapper.component";
+import { CommonModule } from "@angular/common";
+import { ModuleService } from "../../services/module.service";
 
 @Component({
-  selector: 'app-activate-account',
+  selector: "app-activate-account",
   standalone: true,
   imports: [FooterComponent, NavBarComponent, WrapperComponent, CommonModule],
-  templateUrl: './activate-account.component.html',
-  styleUrl: './activate-account.component.scss',
+  templateUrl: "./activate-account.component.html",
+  styleUrl: "./activate-account.component.scss",
 })
 export class ActivateAccountComponent implements OnInit {
   uid: string | null = null;
@@ -21,37 +22,34 @@ export class ActivateAccountComponent implements OnInit {
   errorType: string | null = null;
   responseMessage: string | null = null;
 
-  constructor(
-    private route: ActivatedRoute,
-    private apiService: ApiService,
-    private requestsService: RequestsService
-  ) {}
+  constructor(private route: ActivatedRoute, private apiService: ApiService, private requestsService: RequestsService, private moduleService: ModuleService) {}
 
   ngOnInit(): void {
-    this.uid = this.route.snapshot.paramMap.get('uid');
-    this.token = this.route.snapshot.paramMap.get('token');
+    this.uid = this.route.snapshot.paramMap.get("uid");
+    this.token = this.route.snapshot.paramMap.get("token");
 
-    this.requestsService.errorMessage$.subscribe((message) => {
-      this.errorMessage = message['message'][0];
-      this.errorType = message['type'][0];
+    this.requestsService.errorMessage$.subscribe(message => {
+      this.errorMessage = message["message"][0];
+      this.errorType = message["type"][0];
     });
 
-    this.requestsService.response$.subscribe((response) => {
-      this.responseMessage = response['message'];
+    this.requestsService.response$.subscribe(response => {
+      this.responseMessage = response["message"];
     });
   }
 
   onActivateAccount() {
     this.requestsService.resetResponse();
     this.requestsService.postData(
-      'activate-account/',
+      "activate-account/",
       {
         uid: this.uid,
         token: this.token,
       },
       this.apiService.getUnAuthHeaders(),
       () => {
-        console.log('Account activated!👌');
+        this.requestsService.goToPage("/login");
+        this.moduleService.successToast("Your account has been activated, You can sign in now.");
       }
     );
   }

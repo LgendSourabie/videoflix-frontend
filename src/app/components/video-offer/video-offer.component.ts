@@ -43,12 +43,10 @@ export class VideoOfferComponent implements AfterViewInit, OnInit {
 
     this.requestsService.recentVideos$.subscribe(videos => {
       this.recentVideos = videos;
-      console.log("recent Offer video:", this.recentVideos);
     });
 
     this.requestsService.currentVideos$.subscribe(video => {
       this.currentVideo = video;
-      console.log("Current Offer video:", this.currentVideo);
     });
 
     this.requestsService.categorizedVideos$.subscribe(video => {
@@ -78,7 +76,6 @@ export class VideoOfferComponent implements AfterViewInit, OnInit {
     clearTimeout(this.timeoutId);
     const randomIndex = Math.floor(Math.random() * this.allVideos.length);
     this.rndVideo = this.allVideos[randomIndex];
-    console.log("Random video", this.rndVideo);
 
     setTimeout(async () => {
       if (this.backgroundVideo && this.rndVideo?.video_file_hd1080) {

@@ -24,6 +24,8 @@ export class PlayerComponent {
   @ViewChild("videoPlayer", { static: true })
   videoElement!: ElementRef<HTMLVideoElement>;
 
+  private player!: Plyr;
+
   constructor(private requestsService: RequestsService) {}
 
   ngOnInit(): void {
@@ -36,18 +38,43 @@ export class PlayerComponent {
     });
 
     this.requestsService.currentVideos$.subscribe(video => {
-      this.currentVideo = video;
-      console.log("Current video:", this.currentVideo);
+      if (video) {
+        this.currentVideo = video;
+        this.loadNewVideo();
+      }
     });
   }
 
-  private player!: Plyr;
+  loadNewVideo() {
+    if (!this.player || !this.videoElement) return;
+
+    const videoElement = this.videoElement.nativeElement;
+
+    videoElement.poster = this.currentVideo?.poster || "";
+
+    this.player.source = {
+      type: "video",
+      title: this.currentVideo?.title || "",
+      sources: [
+        { src: this.currentVideo?.video_file_hd1080, type: "video/mp4", size: 1080 },
+        { src: this.currentVideo?.video_file_hd720, type: "video/mp4", size: 720 },
+        { src: this.currentVideo?.video_file_hd480, type: "video/mp4", size: 480 },
+        { src: this.currentVideo?.video_file_hd360, type: "video/mp4", size: 360 },
+      ].filter(source => source.src) as { src: string; size: number }[],
+      poster: this.currentVideo?.poster || "",
+      previewThumbnails: {
+        enabled: true,
+        src: this.currentVideo?.vtt_file || "",
+      },
+    };
+    this.player.restart();
+  }
 
   ngAfterViewInit() {
     this.player = new Plyr(this.videoElement.nativeElement, {
       captions: { active: true },
       quality: {
-        default: 480,
+        default: 1080,
         options: [1080, 720, 480, 360, 240],
       },
     });
