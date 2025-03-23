@@ -17,6 +17,7 @@ jobs:
         run: |
           npm i
           npm run build
+          cp .htaccess Robots.txt dist/videoflix_frontend/browser/
 
       - name: 📂 Sync files
         uses: SamKirkland/FTP-Deploy-Action@4.3.1
@@ -27,15 +28,4 @@ jobs:
           local-dir: dist/videoflix_frontend/browser/
           server-dir: /videoflix.ibrahima-sourabie.com/
           delete: true
-          log-level: verbose
-
-      - name: 📂 Upload .htaccess and Robots.txt
-        uses: SamKirkland/FTP-Deploy-Action@4.3.1
-        with:
-          server: ftp.ibrahima-sourabie.com
-          username: ${{ secrets.FTP_USER }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./
-          server-dir: /videoflix.ibrahima-sourabie.com/
-          include: ".htaccess,Robots.txt"
           log-level: verbose
