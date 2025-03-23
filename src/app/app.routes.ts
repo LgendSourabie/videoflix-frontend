@@ -7,10 +7,10 @@ import { LegalNoticeComponent } from "./shared/legal-notice/legal-notice.compone
 import { StartpageComponent } from "./components/startpage/startpage.component";
 import { ForgotPasswordComponent } from "./components/forgot-password/forgot-password.component";
 import { VideoOfferComponent } from "./components/video-offer/video-offer.component";
-import { VideoPlayerComponent } from "./components/video-player/video-player.component";
 import { ActivateAccountComponent } from "./components/activate-account/activate-account.component";
 import { authenticatorGuard } from "./guards/authenticator.guard";
 import { PlayerComponent } from "./components/player/player.component";
+import { TermsOfUseComponent } from "./shared/terms-of-use/terms-of-use.component";
 
 export const routes: Routes = [
   {
@@ -50,12 +50,6 @@ export const routes: Routes = [
     title: "Videoflix | Videos",
   },
   {
-    path: "video-player",
-    component: VideoPlayerComponent,
-    canActivate: [authenticatorGuard],
-    title: "Videoflix | Player",
-  },
-  {
     path: "player",
     component: PlayerComponent,
     canActivate: [authenticatorGuard],
@@ -70,6 +64,11 @@ export const routes: Routes = [
     path: "legal-notice",
     component: LegalNoticeComponent,
     title: "Videoflix | Legal Notice",
+  },
+  {
+    path: "terms-of-use",
+    component: TermsOfUseComponent,
+    title: "Videoflix | Terms Of Use",
   },
   { path: "**", redirectTo: "login" },
 ];

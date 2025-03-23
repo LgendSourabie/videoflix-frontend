@@ -1,11 +1,14 @@
 article {
   padding-bottom: 1.5rem;
   border-bottom: 1px solid rgb(118, 118, 118);
+  max-width: 1440px;
+  margin: auto;
   > div {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 0.75rem;
+    margin-left: -2rem;
     > h2 {
       font-size: 22px;
       line-height: 28.64px;
@@ -15,8 +18,8 @@ article {
     > img {
       width: 20px;
       height: 20px;
-      filter: invert(19%) sepia(87%) saturate(4447%) hue-rotate(237deg)
-        brightness(89%) contrast(96%);
+      display: none;
+      filter: invert(19%) sepia(87%) saturate(4447%) hue-rotate(237deg) brightness(89%) contrast(96%);
     }
   }
 
@@ -39,6 +42,17 @@ article {
           font-size: 20px;
           color: white; //rgb(118, 118, 118);
         }
+      }
+    }
+  }
+}
+
+@media screen and (width<650px) {
+  article {
+    > div {
+      margin-left: unset;
+      > img {
+        display: block;
       }
     }
   }
